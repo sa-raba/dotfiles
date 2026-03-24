@@ -2,7 +2,6 @@
 export PATH="$HOME/.local/bin:$PATH"
 
 # Initialize tools
-eval "$(zoxide init bash)"
 source <(fzf --bash)
 eval "$(starship init bash)"
 
@@ -23,11 +22,6 @@ alias lg='lazygit'
 alias zj='zellij'
 alias mount-g='~/dotfiles/config/mount_g.sh'
 
-# Auto-start Zellij
-if [[ -z "$ZELLIJ" ]] && command -v zellij &> /dev/null; then
-    exec zellij
-fi
-
 # Editor
 export EDITOR=hx
 export VISUAL=hx
@@ -41,3 +35,9 @@ function y() {
 	fi
 	rm -f -- "$tmp"
 }
+
+# AI Agents
+export TERM=xterm-256color
+
+# zoxide should be initialized at the end of the shell configuration
+eval "$(zoxide init bash)"
