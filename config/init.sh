@@ -23,6 +23,11 @@ alias lg='lazygit'
 alias zj='zellij'
 alias mount-g='~/dotfiles/config/mount_g.sh'
 
+# Auto-start Zellij
+if [[ -z "$ZELLIJ" ]] && command -v zellij &> /dev/null; then
+    exec zellij
+fi
+
 # Editor
 export EDITOR=hx
 export VISUAL=hx
