@@ -1,10 +1,10 @@
 de() {
   local target="$1"
 
-  # Convert shorthand 't' to the actual container name
-  if [ "$target" = "t" ]; then
-    target="task"
-  fi
+  case "$target" in
+    t) target="test" ;;
+    d) target=$(docker ps --format "{{.Image}} {{.Names}}" | grep "^<your-image-name>" | awk '{print $2}' | head -1) ;;
+  esac
 
   # Connect to the container
   docker exec -it "$target" /bin/bash || \
