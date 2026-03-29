@@ -23,12 +23,11 @@ export PATH="$BIN_DIR:$PATH"
 TMP_DIR=$(mktemp -d)
 cd "$TMP_DIR"
 
-# --- 2. fnm (Fast Node Manager) ---
-echo "--- Installing fnm ---"
-gh release download --repo Schniz/fnm --pattern "fnm-linux.zip" --clobber
-unzip -o fnm-linux.zip
-install fnm "$BIN_DIR/"
-rm -f fnm fnm-linux.zip
+# --- 2. Volta (Fast Node Manager) ---
+echo "--- Installing Volta ---"
+curl https://get.volta.sh | bash
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"
 
 # --- 3. Helix ---
 echo "--- Installing Helix ---"

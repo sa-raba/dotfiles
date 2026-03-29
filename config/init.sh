@@ -5,10 +5,9 @@ export PATH="$HOME/.local/bin:$PATH"
 source <(fzf --bash)
 eval "$(starship init bash)"
 
-# fnm (Fast Node Manager)
-if command -v fnm &> /dev/null; then
-  eval "$(fnm env --use-on-cd --shell bash)"
-fi
+# Volta (Fast Node Manager)
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"
 
 # Aliases
 source "$(dirname "${BASH_SOURCE[0]}")/docker.sh"

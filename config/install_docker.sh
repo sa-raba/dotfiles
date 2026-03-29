@@ -7,8 +7,10 @@ BIN_DIR="$HOME/.local/bin"
 mkdir -p "$BIN_DIR"
 cd "$(mktemp -d)"
 
-echo "--- Installing fnm ---"
-curl -L -o fnm.zip "$FNM_URL" && unzip -o fnm.zip && install fnm "$BIN_DIR/"
+echo "--- Installing Volta ---"
+curl https://get.volta.sh | bash
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"
 
 echo "--- Installing Helix ---"
 curl -L -o hx.tar.xz "$HELIX_URL" && tar xf hx.tar.xz && install helix-*-x86_64-linux/hx "$BIN_DIR/"

@@ -15,7 +15,6 @@ get_url() {
     echo "Fetched $var"
 }
 
-get_url "Schniz/fnm" "fnm-linux.zip" "FNM_URL"
 get_url "helix-editor/helix" "helix-.*-x86_64-linux.tar.xz" "HELIX_URL"
 get_url "sxyazi/yazi" "yazi-x86_64-unknown-linux-musl.zip" "YAZI_URL"
 get_url "ajeetdsouza/zoxide" "zoxide-.*-x86_64-unknown-linux-musl.tar.gz" "ZOXIDE_URL"
