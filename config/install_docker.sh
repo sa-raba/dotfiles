@@ -39,3 +39,8 @@ curl -L -o eza.tar.gz "$EZA_URL" && tar xf eza.tar.gz && install eza "$BIN_DIR/"
 
 echo "--- Installing fd ---"
 curl -L -o fd.tar.gz "$FD_URL" && tar xf fd.tar.gz && install fd-*/fd "$BIN_DIR/"
+
+echo "--- Syncing configuration files ---"
+DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+mkdir -p "$HOME/.config"
+cp -rv "$DOTFILES_DIR/.config/"* "$HOME/.config/"
