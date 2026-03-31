@@ -1,0 +1,9 @@
+[[language]]
+name = "json"
+formatter = { command = "biome", args = ["format", "--stdin-file-path", "file.json"] }
+auto-format = true
+
+[[language]]
+name = "jsonc"
+formatter = { command = "biome", args = ["format", "--stdin-file-path", "file.jsonc"] }
+auto-format = true
