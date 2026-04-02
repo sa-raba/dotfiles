@@ -19,6 +19,7 @@ alias find='fd'
 alias ld='lazydocker'
 alias lg='lazygit'
 alias zj='zellij'
+alias zjm='zellij action override-layout ~/.config/zellij/layouts/main.kdl'
 alias mount-g='~/dotfiles/config/mount_g.sh'
 
 # Editor
