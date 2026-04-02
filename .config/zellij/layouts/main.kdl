@@ -1,0 +1,70 @@
+layout {
+    cwd "~"
+    tab name="ai" focus=true hide_floating_panes=true {
+        pane size=1 borderless=true {
+            plugin location="zellij:tab-bar"
+        }
+        pane size="33%" split_direction="vertical" {
+            pane name="a" focus=true size="50%"
+            pane name="b" size="50%"
+        }
+        pane size="34%" split_direction="vertical" {
+            pane name="c" size="50%"
+            pane name="d" size="50%"
+        }
+        pane size="33%" split_direction="vertical" {
+            pane name="e" size="50%"
+            pane name="f" size="50%"
+        }
+        pane size=1 borderless=true {
+            plugin location="zellij:status-bar"
+        }
+    }
+    tab name="y" hide_floating_panes=true {
+        pane size=1 borderless=true {
+            plugin location="zellij:tab-bar"
+        }
+        pane name="a"
+        pane size=1 borderless=true {
+            plugin location="zellij:status-bar"
+        }
+    }
+    tab name="hx" hide_floating_panes=true {
+        pane size=1 borderless=true {
+            plugin location="zellij:tab-bar"
+        }
+        pane split_direction="vertical" {
+            pane name="a" size="33%"
+            pane name="b" size="34%"
+            pane name="c" size="33%"
+        }
+        pane size=1 borderless=true {
+            plugin location="zellij:status-bar"
+        }
+    }
+    tab name="git" hide_floating_panes=true {
+        pane size=1 borderless=true {
+            plugin location="zellij:tab-bar"
+        }
+        pane stacked=true {
+            pane name="a"
+            pane name="b"
+            pane name="c"
+            pane name="d"
+            pane name="e" expanded=true
+        }
+        pane size=1 borderless=true {
+            plugin location="zellij:status-bar"
+        }
+    }
+    tab name="other" hide_floating_panes=true {
+        pane size=1 borderless=true {
+            plugin location="zellij:tab-bar"
+        }
+        pane name="a"
+        pane size=1 borderless=true {
+            plugin location="zellij:status-bar"
+        }
+    }
+}
+
