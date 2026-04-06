@@ -45,6 +45,9 @@ function y() {
 	rm -f -- "$tmp"
 }
 
+# AWS
+export AWS_PAGER=""
+
 # AI Agents
 export TERM=xterm-256color
 
