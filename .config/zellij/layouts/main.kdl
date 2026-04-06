@@ -51,7 +51,7 @@ layout {
             pane name="b"
             pane name="c"
             pane name="d"
-            pane name="e" expanded=true
+            pane name="e"
         }
         pane size=1 borderless=true {
             plugin location="zellij:status-bar"
