@@ -11,7 +11,9 @@ export PATH="$VOLTA_HOME/bin:$PATH"
 
 # Aliases
 de() {
-  docker exec -it "$1" bash || docker exec -it "$1" sh
+  local name
+  name=$(docker ps --format "{{.Names}} {{.Image}}" | grep "$1" | awk '{print $1}' | head -1)
+  docker exec -it "$name" bash || docker exec -it "$name" sh
 }
 
 dce() {
