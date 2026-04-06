@@ -41,6 +41,15 @@ curl -L -o eza.tar.gz "$EZA_URL" && tar xf eza.tar.gz && install eza "$BIN_DIR/"
 echo "--- Installing fd ---"
 curl -L -o fd.tar.gz "$FD_URL" && tar xf fd.tar.gz && install fd-*/fd "$BIN_DIR/"
 
+echo "--- Installing Terraform ---"
+curl -L -o terraform.zip "$TERRAFORM_URL" && unzip -o terraform.zip && install terraform "$BIN_DIR/"
+
+echo "--- Installing AWS CLI ---"
+curl -s "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip -o awscliv2.zip
+./aws/install --bin-dir "$BIN_DIR" --install-dir "$HOME/.local/aws-cli" --update
+rm -rf aws awscliv2.zip
+
 echo "--- Syncing configuration files ---"
 mkdir -p "$HOME/.config"
 cp -rv "$DOTFILES_DIR/.config/"* "$HOME/.config/"

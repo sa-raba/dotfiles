@@ -142,13 +142,28 @@ tar xf fd-*.tar.gz
 install fd-*/fd "$BIN_DIR/"
 rm -rf fd-*
 
-# --- 18. Configuration Files ---
+# --- 18. Terraform ---
+echo "--- Installing Terraform ---"
+TERRAFORM_VERSION=$(gh release view --repo hashicorp/terraform --json tagName -q '.tagName' | sed 's/v//')
+curl -L -o terraform.zip "https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip"
+unzip -o terraform.zip
+install terraform "$BIN_DIR/"
+rm -f terraform terraform.zip
+
+# --- 19. AWS CLI ---
+echo "--- Installing AWS CLI ---"
+curl -s "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip -o awscliv2.zip
+./aws/install --bin-dir "$BIN_DIR" --install-dir "$HOME/.local/aws-cli" --update
+rm -rf aws awscliv2.zip
+
+# --- 20. Configuration Files ---
 echo "--- Syncing configuration files ---"
 # Sync .config from repository to ~/.config
 mkdir -p "$HOME/.config"
 cp -rv "$DOTFILES_DIR/.config/"* "$HOME/.config/"
 
-# --- 19. Cleanup ---
+# --- 21. Cleanup ---
 rm -rf "$TMP_DIR"
 
 echo "--- All tools installed successfully! ---"

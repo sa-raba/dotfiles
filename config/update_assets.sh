@@ -24,3 +24,7 @@ get_url "starship/starship" "starship-x86_64-unknown-linux-musl.tar.gz" "STARSHI
 get_url "sharkdp/bat" "bat-.*-x86_64-unknown-linux-musl.tar.gz" "BAT_URL"
 get_url "eza-community/eza" "eza_x86_64-unknown-linux-musl.tar.gz" "EZA_URL"
 get_url "sharkdp/fd" "fd-.*-x86_64-unknown-linux-musl.tar.gz" "FD_URL"
+
+TERRAFORM_VERSION=$(gh release view --repo hashicorp/terraform --json tagName -q '.tagName' | sed 's/v//')
+echo "TERRAFORM_URL=\"https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip\"" >> "$OUT"
+echo "Fetched TERRAFORM_URL"
