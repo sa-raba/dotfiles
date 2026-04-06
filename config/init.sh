@@ -10,7 +10,14 @@ export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
 
 # Aliases
-source "$(dirname "${BASH_SOURCE[0]}")/docker.sh"
+de() {
+  docker exec -it "$1" bash || docker exec -it "$1" sh
+}
+
+dce() {
+  docker compose exec "${1:-app}" bash
+}
+
 alias cat='bat'
 alias ls='eza --icons --git'
 alias ll='eza -al --icons --git'
