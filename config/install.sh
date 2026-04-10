@@ -157,13 +157,19 @@ unzip -o awscliv2.zip
 ./aws/install --bin-dir "$BIN_DIR" --install-dir "$HOME/.local/aws-cli" --update
 rm -rf aws awscliv2.zip
 
-# --- 20. Configuration Files ---
+# --- 20. AWS Session Manager Plugin ---
+echo "--- Installing AWS Session Manager Plugin ---"
+curl -s "https://s3.amazonaws.com/session-manager-downloads/plugin/latest/ubuntu_64bit/session-manager-plugin.deb" -o "session-manager-plugin.deb"
+sudo dpkg -i session-manager-plugin.deb
+rm session-manager-plugin.deb
+
+# --- 21. Configuration Files ---
 echo "--- Syncing configuration files ---"
 # Sync .config from repository to ~/.config
 mkdir -p "$HOME/.config"
 cp -rv "$DOTFILES_DIR/.config/"* "$HOME/.config/"
 
-# --- 21. Cleanup ---
+# --- 22. Cleanup ---
 rm -rf "$TMP_DIR"
 
 echo "--- All tools installed successfully! ---"
