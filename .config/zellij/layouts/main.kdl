@@ -1,6 +1,6 @@
 layout {
     cwd "~"
-    tab name="ai" focus=true hide_floating_panes=true {
+    tab name="1. ai" focus=true hide_floating_panes=true {
         pane size=1 borderless=true {
             plugin location="zellij:tab-bar"
         }
@@ -20,7 +20,7 @@ layout {
             plugin location="zellij:status-bar"
         }
     }
-    tab name="y" hide_floating_panes=true {
+    tab name="2. y" hide_floating_panes=true {
         pane size=1 borderless=true {
             plugin location="zellij:tab-bar"
         }
@@ -29,7 +29,7 @@ layout {
             plugin location="zellij:status-bar"
         }
     }
-    tab name="hx" hide_floating_panes=true {
+    tab name="3. hx" hide_floating_panes=true {
         pane size=1 borderless=true {
             plugin location="zellij:tab-bar"
         }
@@ -42,7 +42,7 @@ layout {
             plugin location="zellij:status-bar"
         }
     }
-    tab name="git" hide_floating_panes=true {
+    tab name="4. git" hide_floating_panes=true {
         pane size=1 borderless=true {
             plugin location="zellij:tab-bar"
         }
@@ -57,7 +57,7 @@ layout {
             plugin location="zellij:status-bar"
         }
     }
-    tab name="btop" hide_floating_panes=true {
+    tab name="5. btop" hide_floating_panes=true {
         pane size=1 borderless=true {
             plugin location="zellij:tab-bar"
         }
@@ -66,7 +66,7 @@ layout {
             plugin location="zellij:status-bar"
         }
     }
-    tab name="other" hide_floating_panes=true {
+    tab name="7. other" hide_floating_panes=true {
         pane size=1 borderless=true {
             plugin location="zellij:tab-bar"
         }
