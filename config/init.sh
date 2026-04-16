@@ -31,6 +31,12 @@ alias zj='zellij'
 alias zjm='zellij action override-layout ~/.config/zellij/layouts/main.kdl'
 alias mount-g='~/dotfiles/config/mount_g.sh'
 
+# Project helpers
+dotfiles_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+if [ -f "$dotfiles_root/poml/init.sh" ]; then
+	source "$dotfiles_root/poml/init.sh"
+fi
+
 # Editor
 export EDITOR=hx
 export VISUAL=hx
