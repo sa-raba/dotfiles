@@ -33,11 +33,7 @@ layout {
         pane size=1 borderless=true {
             plugin location="zellij:tab-bar"
         }
-        pane split_direction="vertical" {
-            pane name="a" size="33%"
-            pane name="b" size="34%"
-            pane name="c" size="33%"
-        }
+        pane name="a"
         pane size=1 borderless=true {
             plugin location="zellij:status-bar"
         }
@@ -66,6 +62,15 @@ layout {
             plugin location="zellij:status-bar"
         }
     }
+    tab name="6. prompt" hide_floating_panes=true {
+        pane size=1 borderless=true {
+            plugin location="zellij:tab-bar"
+        }
+        pane name="a"
+        pane size=1 borderless=true {
+            plugin location="zellij:status-bar"
+        }
+    }
     tab name="7. other" hide_floating_panes=true {
         pane size=1 borderless=true {
             plugin location="zellij:tab-bar"
@@ -76,4 +81,3 @@ layout {
         }
     }
 }
-
