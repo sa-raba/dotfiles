@@ -44,10 +44,6 @@ layout {
         }
         pane stacked=true {
             pane name="a"
-            pane name="b"
-            pane name="c"
-            pane name="d"
-            pane name="e"
         }
         pane size=1 borderless=true {
             plugin location="zellij:status-bar"
