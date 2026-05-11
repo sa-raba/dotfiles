@@ -58,16 +58,7 @@ layout {
             plugin location="zellij:status-bar"
         }
     }
-    tab name="6. prompt" hide_floating_panes=true {
-        pane size=1 borderless=true {
-            plugin location="zellij:tab-bar"
-        }
-        pane name="a"
-        pane size=1 borderless=true {
-            plugin location="zellij:status-bar"
-        }
-    }
-    tab name="7. other" hide_floating_panes=true {
+    tab name="6. other" hide_floating_panes=true {
         pane size=1 borderless=true {
             plugin location="zellij:tab-bar"
         }
