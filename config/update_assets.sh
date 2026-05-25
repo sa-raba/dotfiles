@@ -22,6 +22,7 @@ get_url "junegunn/fzf" "fzf-.*-linux_amd64.tar.gz" "FZF_URL"
 get_url "BurntSushi/ripgrep" "ripgrep-.*-x86_64-unknown-linux-musl.tar.gz" "RIPGREP_URL"
 get_url "starship/starship" "starship-x86_64-unknown-linux-musl.tar.gz" "STARSHIP_URL"
 get_url "sharkdp/bat" "bat-.*-x86_64-unknown-linux-musl.tar.gz" "BAT_URL"
+get_url "Wilfred/difftastic" "difft-x86_64-unknown-linux-gnu.tar.gz" "DIFFT_URL"
 get_url "eza-community/eza" "eza_x86_64-unknown-linux-musl.tar.gz" "EZA_URL"
 get_url "sharkdp/fd" "fd-.*-x86_64-unknown-linux-musl.tar.gz" "FD_URL"
 
