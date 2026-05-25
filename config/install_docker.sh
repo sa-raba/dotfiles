@@ -56,6 +56,11 @@ if [ ! -f "$BIN_DIR/bat" ] || [ "$UPDATE" = "1" ]; then
     curl -L -o bat.tar.gz "$BAT_URL" && tar xf bat.tar.gz && install bat-*/bat "$BIN_DIR/"
 fi
 
+if [ ! -f "$BIN_DIR/difft" ] || [ "$UPDATE" = "1" ]; then
+    echo "--- Installing Difftastic ---"
+    curl -L -o difft.tar.gz "$DIFFT_URL" && tar xf difft.tar.gz && install difft "$BIN_DIR/"
+fi
+
 if [ ! -f "$BIN_DIR/eza" ] || [ "$UPDATE" = "1" ]; then
     echo "--- Installing eza ---"
     curl -L -o eza.tar.gz "$EZA_URL" && tar xf eza.tar.gz && install eza "$BIN_DIR/"
