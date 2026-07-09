@@ -1,6 +1,10 @@
 # Add local bin to PATH
 export PATH="$HOME/.local/bin:$PATH"
 
+# Use UTF-8 locale for Japanese input/output in the container
+export LANG=C.UTF-8
+export LC_ALL=C.UTF-8
+
 # Initialize tools
 source <(fzf --bash)
 eval "$(starship init bash)"
