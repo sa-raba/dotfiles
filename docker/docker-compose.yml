@@ -1,0 +1,19 @@
+services:
+  app:
+    image: codex-docker-node:latest
+    pull_policy: never
+    networks:
+      - work-shared
+    working_dir: /workspace
+    volumes:
+      - ${PWD}:/workspace
+      - ${HOME}/.aws:/home/work/.aws
+      - ${HOME}/.ssh:/home/work/.ssh
+      - ${HOME}/.codex:/home/work/.codex
+    stdin_open: true
+    tty: true
+    command: /bin/bash
+
+networks:
+  work-shared:
+    external: true
