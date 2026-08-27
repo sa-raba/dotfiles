@@ -30,7 +30,7 @@ docker network create work-shared
 docker compose \
   -p "$(basename "$PWD")" \
   -f "${HOME}/dotfiles/docker/docker-compose.yml" \
-  up
+  up -d
 ```
 
 ツール類は Dockerfile の build 時にインストールされます。起動時はリポジトリを
