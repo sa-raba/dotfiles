@@ -16,30 +16,15 @@ BASE_IMAGE=golang:bookworm docker build --build-arg BASE_IMAGE -f docker/Dockerf
 BASE_IMAGE=python:3.13-bookworm docker build --build-arg BASE_IMAGE -f docker/Dockerfile -t codex-docker-python:latest .
 ```
 
-## 起動
-
-初回のみ、共有ネットワークを作成します。
+## 関連コマンド
 
 ```bash
+# 初回のみ、ネットワークを作成
 docker network create work-shared
-```
-
-その後、プロジェクトのルートディレクトリで起動します。
-
-```bash
-docker compose \
-  -p "$(basename "$PWD")" \
-  -f "${HOME}/dotfiles/docker/docker-compose.yml" \
-  up -d
-```
-
-停止・削除する場合は、同じプロジェクト名と compose ファイルを指定します。
-
-```bash
-docker compose \
-  -p "$(basename "$PWD")" \
-  -f "${HOME}/dotfiles/docker/docker-compose.yml" \
-  down
+# 起動、接続、停止
+docker compose -p "$(basename "$PWD")" -f "${HOME}/dotfiles/docker/docker-compose.yml" up -d
+docker compose -p "$(basename "$PWD")" -f "${HOME}/dotfiles/docker/docker-compose.yml" exec app bash
+docker compose -p "$(basename "$PWD")" -f "${HOME}/dotfiles/docker/docker-compose.yml" down
 ```
 
 ツール類は Dockerfile の build 時にインストールされます。起動時はリポジトリを
