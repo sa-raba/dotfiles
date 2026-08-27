@@ -33,6 +33,15 @@ docker compose \
   up -d
 ```
 
+停止・削除する場合は、同じプロジェクト名と compose ファイルを指定します。
+
+```bash
+docker compose \
+  -p "$(basename "$PWD")" \
+  -f "${HOME}/dotfiles/docker/docker-compose.yml" \
+  down
+```
+
 ツール類は Dockerfile の build 時にインストールされます。起動時はリポジトリを
 `/workspace` にマウントし、作業ツリーをそのまま利用します。compose はイメージを
 build しないため、あらかじめイメージを作成しておく必要があります。別プロジェクトで
