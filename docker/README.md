@@ -21,11 +21,25 @@ BASE_IMAGE=python:3.13-bookworm docker build --build-arg BASE_IMAGE -f docker/Do
 ```bash
 # 初回のみ、ネットワークを作成
 docker network create work-shared
-# 起動、接続、停止
-docker compose -p "$(basename "$PWD")" -f "${HOME}/dotfiles/docker/docker-compose.yml" up -d
-docker compose -p "$(basename "$PWD")" -f "${HOME}/dotfiles/docker/docker-compose.yml" exec app bash
-docker compose -p "$(basename "$PWD")" -f "${HOME}/dotfiles/docker/docker-compose.yml" down
+# Node 環境の起動、接続、停止
+dcu node
+dcb node
+dcs node
+
+# Go / Python 環境も同じ形式で操作できます
+dcu go
+dcb go
+dcu python
+dcb python
+
+# コンテナを削除する場合
+dcd node
 ```
+
+`dcu` はコンテナを作成・起動し、`dcb` はコンテナの `app` サービスに接続します。
+`dcs` はコンテナを保持したまま停止し、`dcd` はコンテナを削除します。
+いずれも `node`、`go`、`python` のいずれかを指定してください。
+compose ファイルは共通のものを使用し、指定した runtime に対応するイメージが選択されます。
 
 ツール類は Dockerfile の build 時にインストールされます。起動時はリポジトリを
 `/workspace` にマウントし、作業ツリーをそのまま利用します。compose はイメージを

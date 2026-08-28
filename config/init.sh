@@ -24,6 +24,55 @@ dce() {
   docker compose exec "${1:-app}" bash
 }
 
+dc_help() {
+  echo "Usage:"
+  echo "  dcu {node|go|python}  Start containers"
+  echo "  dcb {node|go|python}  Open bash"
+  echo "  dcs {node|go|python}  Stop containers"
+  echo "  dcd {node|go|python}  Stop and remove containers"
+}
+
+dc() {
+  [[ $# -ge 2 ]] || { dc_help; return 1; }
+
+  local runtime="$1"
+  shift
+
+  case "$runtime" in
+    node|go|python) ;;
+    *)
+      dc_help
+      return 1
+      ;;
+  esac
+
+  CODEX_IMAGE="codex-docker-${runtime}:latest" \
+    docker compose \
+      -p "$(basename "$PWD")" \
+      -f "${HOME}/dotfiles/docker/docker-compose.yml" \
+      "$@"
+}
+
+dcu() {
+  [[ $# -eq 1 ]] || { dc_help; return 1; }
+  dc "$1" up -d
+}
+
+dcb() {
+  [[ $# -eq 1 ]] || { dc_help; return 1; }
+  dc "$1" exec app bash
+}
+
+dcs() {
+  [[ $# -eq 1 ]] || { dc_help; return 1; }
+  dc "$1" stop
+}
+
+dcd() {
+  [[ $# -eq 1 ]] || { dc_help; return 1; }
+  dc "$1" down
+}
+
 alias cat='bat'
 alias ls='eza --icons --git'
 alias ll='eza -al --icons --git'

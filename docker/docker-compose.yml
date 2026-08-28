@@ -1,6 +1,6 @@
 services:
   app:
-    image: codex-docker-node:latest
+    image: ${CODEX_IMAGE:?CODEX_IMAGE is required}
     pull_policy: never
     networks:
       - work-shared
