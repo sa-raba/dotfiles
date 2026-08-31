@@ -31,6 +31,7 @@ RUN cd "$HOME/dotfiles" \
     && ./config/install_docker.sh \
     && volta install node@24 \
     && npm install --global @openai/codex \
+    && curl -fsSL https://antigravity.google/cli/install.sh | bash \
     && find /tmp -mindepth 1 -maxdepth 1 -user "$(id -un)" -exec rm -rf {} + \
     && { grep -qxF 'source ~/dotfiles/config/init.sh' "$HOME/.bashrc" \
          || echo 'source ~/dotfiles/config/init.sh' >> "$HOME/.bashrc"; }
