@@ -13,6 +13,7 @@ for name in $agents; do
   [ -f "$HOME/.codex/auth.json" ] && ln -sfn "$HOME/.codex/auth.json" "$codex_dir/auth.json"
   [ -f "$HOME/.codex/config.toml" ] && ln -sfn "$HOME/.codex/config.toml" "$codex_dir/config.toml"
   [ -d "$HOME/.aws" ] && ln -sfn "$HOME/.aws" "$home_dir/.aws"
+  [ -d "$HOME/.gemini" ] && ln -sfn "$HOME/.gemini" "$home_dir/.gemini"
 done
 
 for name in $agents; do

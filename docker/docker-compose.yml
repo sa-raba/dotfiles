@@ -10,6 +10,7 @@ services:
       - ${HOME}/.aws:/home/work/.aws
       - ${HOME}/.ssh:/home/work/.ssh
       - ${HOME}/.codex:/home/work/.codex
+      - ${HOME}/.gemini:/home/work/.gemini
     stdin_open: true
     tty: true
     command: /bin/bash
