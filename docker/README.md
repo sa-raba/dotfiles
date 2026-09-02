@@ -10,8 +10,8 @@
 ```bash
 # Node.js 24
 docker build --network=host --build-arg BASE_IMAGE=debian:bookworm-slim --build-arg NODE_VERSION=24 -f docker/Dockerfile -t devbox-node:24 .
-# Go 1.24
-docker build --network=host --build-arg BASE_IMAGE=golang:1.24-bookworm -f docker/Dockerfile -t devbox-go:1.24 .
+# Go 1.26
+docker build --network=host --build-arg BASE_IMAGE=golang:1.26-bookworm -f docker/Dockerfile -t devbox-go:1.26 .
 # Python 3.13
 docker build --network=host --build-arg BASE_IMAGE=python:3.13-bookworm -f docker/Dockerfile -t devbox-python:3.13 .
 ```
