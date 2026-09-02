@@ -26,10 +26,30 @@ dce() {
 
 dc_help() {
   echo "Usage:"
-  echo "  dcu {node|go|python}  Start containers"
-  echo "  dcb {node|go|python}  Open bash"
-  echo "  dcs {node|go|python}  Stop containers"
-  echo "  dcd {node|go|python}  Stop and remove containers"
+  echo "  dcu [RUNTIME]  Start containers"
+  echo "  dcb [RUNTIME]  Open bash"
+  echo "  dcs [RUNTIME]  Stop containers"
+  echo "  dcd [RUNTIME]  Stop and remove containers"
+  echo "  RUNTIME: node:VERSION, go:VERSION, or python:VERSION"
+  echo "  Without RUNTIME, select a locally built devbox image"
+}
+
+dc_select() {
+  local selected
+  selected="$({ docker image ls --format '{{.Repository}}:{{.Tag}}' \
+    | awk '$0 ~ /^devbox-(node|go|python):[^:]+$/ { sub(/^devbox-/, ""); print }' \
+    | sort -V; } | fzf --height 40% --reverse --prompt='Runtime > ')" || return 1
+
+  [[ -n "$selected" ]] || return 1
+  DC_RUNTIME="$selected"
+}
+
+dc_use() {
+  if [[ $# -eq 1 ]]; then
+    DC_RUNTIME="$1"
+  elif [[ -z "${DC_RUNTIME:-}" ]]; then
+    dc_select || return 1
+  fi
 }
 
 dc() {
@@ -38,39 +58,47 @@ dc() {
   local runtime="$1"
   shift
 
+  local project_name
+  project_name="$(basename "$PWD" | tr '[:upper:]' '[:lower:]')"
+
   case "$runtime" in
-    node|go|python) ;;
+    node:?*|go:?*|python:?*)
+      ;;
     *)
-      dc_help
+      echo "Runtime must include a version: node:24, go:1.24, or python:3.13" >&2
       return 1
       ;;
   esac
 
-  CODEX_IMAGE="codex-docker-${runtime}:latest" \
+  CODEX_IMAGE="devbox-${runtime}" \
     docker compose \
-      -p "$(basename "$PWD")" \
+      -p "$project_name" \
       -f "${HOME}/dotfiles/docker/docker-compose.yml" \
       "$@"
 }
 
 dcu() {
-  [[ $# -eq 1 ]] || { dc_help; return 1; }
-  dc "$1" up -d
+  [[ $# -le 1 ]] || { dc_help; return 1; }
+  dc_use "$@" || return 1
+  dc "$DC_RUNTIME" up -d
 }
 
 dcb() {
-  [[ $# -eq 1 ]] || { dc_help; return 1; }
-  dc "$1" exec app bash
+  [[ $# -le 1 ]] || { dc_help; return 1; }
+  dc_use "$@" || return 1
+  dc "$DC_RUNTIME" exec app bash
 }
 
 dcs() {
-  [[ $# -eq 1 ]] || { dc_help; return 1; }
-  dc "$1" stop
+  [[ $# -le 1 ]] || { dc_help; return 1; }
+  dc_use "$@" || return 1
+  dc "$DC_RUNTIME" stop
 }
 
 dcd() {
-  [[ $# -eq 1 ]] || { dc_help; return 1; }
-  dc "$1" down
+  [[ $# -le 1 ]] || { dc_help; return 1; }
+  dc_use "$@" || return 1
+  dc "$DC_RUNTIME" down
 }
 
 alias cat='bat'
