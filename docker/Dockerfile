@@ -1,6 +1,8 @@
 ARG BASE_IMAGE
 FROM ${BASE_IMAGE}
 
+ARG NODE_VERSION=24
+
 ENV DEBIAN_FRONTEND=noninteractive
 ENV VOLTA_HOME=/home/work/.volta
 ENV PATH=/home/work/.local/bin:/home/work/.volta/bin:${PATH}
@@ -29,7 +31,7 @@ USER work
 
 RUN cd "$HOME/dotfiles" \
     && ./config/install_docker.sh \
-    && volta install node@24 \
+    && volta install node@${NODE_VERSION} \
     && npm install --global @openai/codex \
     && curl -fsSL https://antigravity.google/cli/install.sh | bash \
     && find /tmp -mindepth 1 -maxdepth 1 -user "$(id -un)" -exec rm -rf {} + \
