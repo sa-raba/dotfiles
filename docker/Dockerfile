@@ -9,7 +9,7 @@ ENV PATH=/home/work/.local/bin:/home/work/.volta/bin:${PATH}
 
 COPY config /home/work/dotfiles/config
 COPY .config /home/work/dotfiles/.config
-COPY --chmod=0755 docker/docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
+COPY --chmod=0755 docker/codex-entrypoint.sh /usr/local/bin/codex-entrypoint.sh
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
@@ -38,5 +38,5 @@ RUN cd "$HOME/dotfiles" \
     && { grep -qxF 'source ~/dotfiles/config/init.sh' "$HOME/.bashrc" \
          || echo 'source ~/dotfiles/config/init.sh' >> "$HOME/.bashrc"; }
 
-ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
+ENTRYPOINT ["/usr/local/bin/codex-entrypoint.sh"]
 CMD ["/bin/bash"]

@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-agents="${CODEX_AGENTS:-a}"
 base="${CODEX_AGENT_BASE:-$HOME}"
 
-for name in $agents; do
-  home_dir="$base/codex-$name"
-  codex_dir="$home_dir/.codex"
+setup_agent() {
+  local home_dir="$1"
+  local codex_dir="$home_dir/.codex"
+  local skills_link="$home_dir/.codex/skills"
 
   mkdir -p "$codex_dir"
 
@@ -14,14 +14,16 @@ for name in $agents; do
   [ -f "$HOME/.codex/config.toml" ] && ln -sfn "$HOME/.codex/config.toml" "$codex_dir/config.toml"
   [ -d "$HOME/.aws" ] && ln -sfn "$HOME/.aws" "$home_dir/.aws"
   [ -d "$HOME/.gemini" ] && ln -sfn "$HOME/.gemini" "$home_dir/.gemini"
-done
-
-for name in $agents; do
-  home_dir="$base/codex-$name"
-  skills_link="$home_dir/.codex/skills"
-
   rm -rf "$skills_link"
   ln -s "$HOME/.codex/skills" "$skills_link"
-done
+}
+
+if [ -n "${CODEX_AGENTS:-}" ]; then
+  for name in $CODEX_AGENTS; do
+    setup_agent "$base/codex-$name"
+  done
+else
+  setup_agent "$base"
+fi
 
 exec "$@"

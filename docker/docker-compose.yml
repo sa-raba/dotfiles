@@ -2,6 +2,9 @@ services:
   app:
     image: ${CODEX_IMAGE:?CODEX_IMAGE is required}
     pull_policy: never
+    environment:
+      CODEX_CONTAINER: "1"
+      CODEX_AGENT_BASE: /workspace/.codex-agents
     networks:
       - work-shared
     working_dir: /workspace

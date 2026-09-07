@@ -13,6 +13,16 @@ eval "$(starship init bash)"
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
 
+# Keep Codex's shared auth/config separate from per-workspace HOME data.
+if [[ "${CODEX_CONTAINER:-}" == "1" && -n "${CODEX_AGENT_BASE:-}" ]]; then
+  codex() {
+    npm i -g @openai/codex
+    HOME="$CODEX_AGENT_BASE" \
+      CODEX_HOME="$CODEX_AGENT_BASE/.codex" \
+      command codex "$@"
+  }
+fi
+
 # Aliases
 de() {
   local name
