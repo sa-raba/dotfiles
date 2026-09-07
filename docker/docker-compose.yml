@@ -14,6 +14,7 @@ services:
       - ${HOME}/.ssh:/home/work/.ssh
       - ${HOME}/.codex:/home/work/.codex
       - ${HOME}/.gemini:/home/work/.gemini
+      - ${HOME}/project/shared-docs:/workspace/.local
     stdin_open: true
     tty: true
     command: /bin/bash
