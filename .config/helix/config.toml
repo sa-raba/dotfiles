@@ -1,3 +1,6 @@
 [editor]
 line-number = "relative"
 mouse = true
+
+[keys.normal]
+space.E = ":open \"%sh{tmp=$(mktemp -t helix-yazi.XXXXXX); trap 'rm -f $tmp' EXIT; yazi --chooser-file $tmp; [ -s $tmp ] && cat $tmp}\""
