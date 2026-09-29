@@ -15,7 +15,9 @@ RUN apt-get update \
     && apt-get install -y --no-install-recommends \
         ca-certificates \
         curl \
+        file \
         git \
+        procps \
         sudo \
         unzip \
         xz-utils \
