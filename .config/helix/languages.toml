@@ -7,3 +7,11 @@ auto-format = true
 name = "jsonc"
 formatter = { command = "biome", args = ["format", "--stdin-file-path", "file.jsonc"] }
 auto-format = true
+
+[[language]]
+name = "python"
+language-servers = ["pyright"]
+
+[[language]]
+name = "go"
+language-servers = ["gopls"]
